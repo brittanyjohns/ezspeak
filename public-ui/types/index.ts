@@ -1,7 +1,7 @@
 export interface Board {
-    id: number;
+    id: string;
     name: string;
-    user_id: number;
+    user_id: string;
   }
 
 export interface BoardWithImages extends Board {
@@ -14,9 +14,9 @@ export interface BoardWithImages extends Board {
   }
   
 export interface ImageItem {
-    id: number;
+    id: string;
     label: string;
-    category: number;
+    category: string;
   }
 
 export interface NewImageItemPayload {

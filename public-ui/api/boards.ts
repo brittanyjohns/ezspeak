@@ -1,4 +1,4 @@
-import { NewBoardPayload, Board } from "../types";
+import { NewBoardPayload, Board, BoardWithImages } from "../types";
 const API_URL = "http://localhost:3000/";
 
 export async function getBoards(): Promise<Board[]> {
@@ -37,5 +37,18 @@ export async function getBoard(id: string): Promise<Board> {
   };
   const response = await fetch(`${API_URL}boards/${id}`, requestInfo);
   const board: Board = await response.json();
+  return board;
+}
+
+export async function getBoardWithImages(id: string): Promise<BoardWithImages> {
+  const requestInfo = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(`${API_URL}boards/${id}`, requestInfo);
+  const board: BoardWithImages = await response.json();
+  console.log("API", board);
   return board;
 }

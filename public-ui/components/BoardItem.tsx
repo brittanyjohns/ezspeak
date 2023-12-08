@@ -1,11 +1,11 @@
 import React from "react";
+import { Link } from "expo-router";
 import { Button, Card, Paragraph } from "react-native-paper";
 
 interface BoardItemProps {
   id: string;
   name: string;
   user_id: string;
-  onClick: () => void;
 }
 
 function BoardItem(props: BoardItemProps) {
@@ -16,8 +16,16 @@ function BoardItem(props: BoardItemProps) {
         <Paragraph>{props.name}</Paragraph>
       </Card.Content>
       <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+
       <Card.Actions>
-        <Button onPress={props.onClick}>Select</Button>
+        <Link
+          href={{
+            pathname: `/boards/[id]`,
+            params: { id: props.id },
+          }}
+        >
+          View board
+        </Link>
       </Card.Actions>
     </Card>
   );

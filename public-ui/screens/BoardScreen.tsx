@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, View } from "react-native";
+import { SafeAreaView, ScrollView, Text } from "react-native";
 import { getBoard } from "../api/boards";
 import ImageItem from "../components/ImageItem";
 interface BoardProps {
@@ -25,19 +25,7 @@ export function BoardScreen(props: BoardProps) {
   return (
     <ScrollView contentContainerStyle={{ paddingHorizontal: 24 }}>
       <SafeAreaView>
-        {imageItems &&
-          imageItems.map((imageItem: any) => (
-            <View key={imageItem.id}>
-              <ImageItem
-                label={imageItem.label}
-                category={""}
-                private={false}
-                ai_generated={false}
-                url={""}
-                user_id={""}
-              />
-            </View>
-          ))}
+        <Text>{props.name}</Text>
       </SafeAreaView>
     </ScrollView>
   );
