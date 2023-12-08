@@ -29,7 +29,24 @@ class BoardsController < ApplicationController
 
   # GET /boards/1
   def show
-    render json: @board
+    payload = {
+      id: @board.id,
+      name: @board.name,
+      static: @board.static,
+      favorite: @board.favorite,
+      user_id: @board.user_id,
+      images: @board.images.map do |image|
+        {
+          id: image.id,
+          label: image.label,
+          category: image.category,
+          url: "",
+          private: image.private,
+          ai_generated: image.ai_generated,
+        }
+      end,
+    }
+    render json: payload
   end
 
   # POST /boards
@@ -61,7 +78,7 @@ class BoardsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_board
-    @board = Board.find(params[:id])
+    @board = Board.includes(:images).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

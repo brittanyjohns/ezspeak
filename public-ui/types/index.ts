@@ -14,6 +14,7 @@ export interface BoardWithImages extends Board {
   }
   
 export interface ImageItem {
+    url: string;
     id: string;
     label: string;
     category: string;

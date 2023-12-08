@@ -23,18 +23,8 @@ export function BoardsScreen() {
   return (
     <ScrollView contentContainerStyle={{ paddingHorizontal: 24 }}>
       <SafeAreaView>
-        <Text>Blog post: {slug}</Text>;
+        <Text>Blog post: {slug}</Text>
         <BoardList boards={boards} />
-        {/* {boards &&
-          boards.map((board: any) => (
-            <View key={board.id}>
-              <BoardItem
-                id={board.id}
-                name={board.name}
-                user_id={board.user_id}
-              />
-            </View>
-          ))} */}
       </SafeAreaView>
     </ScrollView>
   );
