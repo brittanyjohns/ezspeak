@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  label: MyString
+  private: false
+  category: MyString
+  ai_generated: false
+  ai_prompt: MyString
+
+two:
+  label: MyString
+  private: false
+  category: MyString
+  ai_generated: false
+  ai_prompt: MyString
