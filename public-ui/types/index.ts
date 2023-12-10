@@ -14,7 +14,7 @@ export interface BoardWithImages extends Board {
   }
   
 export interface ImageItem {
-    url: string;
+    image_url: string;
     id: string;
     label: string;
     category: string;
@@ -23,4 +23,6 @@ export interface ImageItem {
 export interface NewImageItemPayload {
     label: string;
     category: string;
+    image_url: string;
+    date: string;
   }

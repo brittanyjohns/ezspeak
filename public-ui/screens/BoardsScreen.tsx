@@ -23,7 +23,7 @@ export function BoardsScreen() {
   return (
     <ScrollView contentContainerStyle={{ paddingHorizontal: 24 }}>
       <SafeAreaView>
-        <Text>Blog post: {slug}</Text>
+        <Text>Boards</Text>
         <BoardList boards={boards} />
       </SafeAreaView>
     </ScrollView>

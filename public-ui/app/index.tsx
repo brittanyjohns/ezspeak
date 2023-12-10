@@ -1,21 +1,30 @@
-import { StyleSheet, SafeAreaView, View } from "react-native";
+import { StyleSheet, SafeAreaView, View, Button } from "react-native";
 import Board from "../components/Board";
 import { BoardScreen } from "../screens/BoardScreen";
 import { Headline, Provider as PaperProvider } from "react-native-paper";
 import { BoardsScreen } from "../screens/BoardsScreen";
 import BottomNav from "../components/BottomNav";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
+import ImageFilePicker from "../components/ImageFilePicker";
 
 export default function Page() {
+  const navigation = useRouter();
   return (
     <PaperProvider>
       <SafeAreaView style={styles.container}>
         <Link href="/about">About</Link>
 
-        <Link href="/user/bacon">View user</Link>
-        <Headline style={styles.heading}>Hello, World!</Headline>
+        <Headline style={styles.heading}>Welcome to EZeeSpeak</Headline>
         <View>
           <BoardsScreen />
+          <View>
+            <Button
+              title="Create New Image"
+              onPress={() => {
+                navigation.push("/images/new");
+              }}
+            />
+          </View>
           <BottomNav />
         </View>
       </SafeAreaView>

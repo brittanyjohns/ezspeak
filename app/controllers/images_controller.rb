@@ -1,20 +1,23 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: %i[ show update destroy ]
-
+  # include ImageSerializer
   # GET /images
   def index
-    @images = Image.all
+    @images = Image.with_attached_saved_image.last(10)
 
     render json: @images
   end
 
   # GET /images/1
   def show
-    render json: @image
+    render json: ImageSerializer.new(@image).serializable_hash[:data][:attributes]
   end
 
   # POST /images
   def create
+    puts "image_params: #{image_params}"
+    puts "PArams: #{params}"
+
     @image = Image.new(image_params)
 
     if @image.save
@@ -39,13 +42,14 @@ class ImagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_image
-      @image = Image.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def image_params
-      params.require(:image).permit(:label, :private, :saved_image, :category, :ai_generated, :ai_prompt)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_image
+    @image = Image.with_attached_saved_image.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def image_params
+    params.require(:image).permit(:label, :private, :saved_image, :category, :ai_generated, :ai_prompt)
+  end
 end

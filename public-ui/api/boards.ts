@@ -52,3 +52,39 @@ export async function getBoardWithImages(id: string): Promise<BoardWithImages> {
   console.log("API", board);
   return board;
 }
+
+export async function deleteBoard(id: string): Promise<void> {
+  const requestInfo = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  await fetch(`${API_URL}boards/${id}`, requestInfo);
+}
+
+export async function updateBoard(id: string, payload: NewBoardPayload): Promise<Board> {
+  const requestInfo = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  };
+  const response = await fetch(`${API_URL}boards/${id}`, requestInfo);
+  const board: Board = await response.json();
+  return board;
+}
+
+export async function addImageListToBoard(id: string, payload: { word_list: string[] }): Promise<Board> {
+  const requestInfo = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  };
+  const response = await fetch(`${API_URL}boards/${id}/add_word_list`, requestInfo);
+  const board: Board = await response.json();
+  return board;
+}

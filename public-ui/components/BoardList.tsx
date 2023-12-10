@@ -4,7 +4,6 @@ import React from "react";
 import { Link } from "@react-navigation/native";
 
 import { StyleSheet, SafeAreaView, View, Text } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const BoardList = ({ boards }) => {
   return (

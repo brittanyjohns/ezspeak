@@ -5,6 +5,7 @@ import { Headline, Provider as PaperProvider } from "react-native-paper";
 import { BoardsScreen } from "../screens/BoardsScreen";
 import BottomNav from "../components/BottomNav";
 import { Link, useRouter } from "expo-router";
+import ImageFilePicker from "../components/ImageFilePicker";
 
 export default function Page() {
   const navigation = useRouter();
@@ -19,6 +20,12 @@ export default function Page() {
             title="Navigate to SecondScreen"
             onPress={() => {
               navigation.push("/SecondScreen");
+            }}
+          />
+          <Button
+            title="Navigate to New Image"
+            onPress={() => {
+              navigation.push("/images/new");
             }}
           />
         </View>

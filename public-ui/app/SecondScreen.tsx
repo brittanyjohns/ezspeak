@@ -1,6 +1,5 @@
 import { Link, useLocalSearchParams } from "expo-router";
-import { StyleSheet, SafeAreaView, View, Text } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, SafeAreaView, View, Text, Pressable } from "react-native";
 
 const SecondScreen = () => {
   const { slug } = useLocalSearchParams();
@@ -10,9 +9,9 @@ const SecondScreen = () => {
       <Text>Second Screen : ${slug}</Text>
 
       <Link href="/" asChild>
-        <TouchableOpacity>
+        <Pressable>
           <Text>Navigate to index.js</Text>
-        </TouchableOpacity>
+        </Pressable>
       </Link>
     </View>
   );

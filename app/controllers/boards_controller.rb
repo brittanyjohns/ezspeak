@@ -3,7 +3,7 @@ class BoardsController < ApplicationController
 
   # GET /boards
   def index
-    @boards = Board.all.includes(:images)
+    @boards = Board.all
     @boards_with_images = @boards.map do |board|
       {
         id: board.id,
@@ -12,6 +12,7 @@ class BoardsController < ApplicationController
         favorite: board.favorite,
         user_id: board.user_id,
         images: board.images.map do |image|
+          puts "image: #{image.inspect}"
           {
             id: image.id,
             label: image.label,
@@ -19,6 +20,7 @@ class BoardsController < ApplicationController
             url: "",
             private: image.private,
             ai_generated: image.ai_generated,
+            saved_image: image.saved_image,
           }
         end,
       }
@@ -29,6 +31,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/1
   def show
+    @board = Board.includes(board_images: { image: [saved_image_attachment: :blob] }).find(params[:id])
     payload = {
       id: @board.id,
       name: @board.name,
@@ -47,6 +50,16 @@ class BoardsController < ApplicationController
       end,
     }
     render json: payload
+  end
+
+  def add_word_list
+    @board = Board.find(params[:id])
+    words = params[:word_list]
+    words.each do |word|
+      image = Image.find_or_create_by(label: word)
+      BoardImage.create(board: @board, image: image)
+    end
+    render json: @board
   end
 
   # POST /boards

@@ -1,15 +1,17 @@
+import { useRouter } from "expo-router";
 import * as React from "react";
 import { BottomNavigation, Text } from "react-native-paper";
 
 const MusicRoute = () => <Text>Music</Text>;
 
-const AlbumsRoute = () => <Text>Albums</Text>;
+const ImagesRoute = () => <Text>Images</Text>;
 
-const RecentsRoute = () => <Text>Recents</Text>;
+const BoardsRoute = () => <Text>Boards</Text>;
 
 const NotificationsRoute = () => <Text>Notifications</Text>;
 
 const BottomNav = () => {
+  const navigation = useRouter();
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {
@@ -18,20 +20,20 @@ const BottomNav = () => {
       focusedIcon: "heart",
       unfocusedIcon: "heart-outline",
     },
-    { key: "albums", title: "Albums", focusedIcon: "album" },
-    { key: "recents", title: "Recents", focusedIcon: "history" },
+    { key: "images", title: "Images", focusedIcon: "image" },
+    { key: "boards", title: "Boards", focusedIcon: "history" },
     {
-      key: "notifications",
-      title: "Notifications",
-      focusedIcon: "bell",
-      unfocusedIcon: "bell-outline",
+      key: "boards/new",
+      title: "New Board",
+      focusedIcon: "plus",
+      unfocusedIcon: "plus-outline",
     },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
     music: MusicRoute,
-    albums: AlbumsRoute,
-    recents: RecentsRoute,
+    images: ImagesRoute,
+    boards: BoardsRoute,
     notifications: NotificationsRoute,
   });
 
@@ -40,6 +42,10 @@ const BottomNav = () => {
       navigationState={{ index, routes }}
       onIndexChange={setIndex}
       renderScene={renderScene}
+      onTabPress={(e) => {
+        console.log("onTabPress", e);
+        navigation.push(`/${e.route.key}`);
+      }}
     />
   );
 };
