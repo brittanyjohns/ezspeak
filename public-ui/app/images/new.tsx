@@ -12,6 +12,7 @@ import { Headline, Provider as PaperProvider } from "react-native-paper";
 import { Link, useRouter } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
 import React, { useState, useEffect } from "react";
+import { API_URL } from "../../types";
 
 export default function Page() {
   const navigation = useRouter();
@@ -33,7 +34,7 @@ export default function Page() {
     data.append("image[category]", category);
     console.log("data", data);
 
-    fetch("http://localhost:3000/images", {
+    fetch(`${API_URL}images`, {
       method: "POST",
       body: data,
     })

@@ -11,6 +11,7 @@ import { Link, useRouter } from "expo-router";
 import React, { useState, useEffect } from "react";
 import BoardForm from "../../components/BoardForm";
 import BottomNav from "../../components/BottomNav";
+import { API_URL } from "../../types";
 
 export default function Page() {
   const navigation = useRouter();
@@ -32,7 +33,7 @@ export default function Page() {
     data.append("board[user_id]", "1");
     console.log("data", data);
 
-    fetch("http://localhost:3000/boards", {
+    fetch(`${API_URL}boards`, {
       method: "POST",
       body: data,
     })

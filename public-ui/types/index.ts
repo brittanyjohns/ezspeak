@@ -1,3 +1,8 @@
+const HOST_URL = process.env.REACT_APP_HOST_URL || "192.168.254.12";
+// const HOST_URL = process.env.REACT_APP_HOST_URL || "localhost";
+
+
+export const API_URL = `https://${HOST_URL}:3000/`;
 export interface Board {
     id: string;
     name: string;

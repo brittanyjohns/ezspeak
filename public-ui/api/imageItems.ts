@@ -1,5 +1,4 @@
-const API_URL = "http://localhost:3000/";
-import { NewImageItemPayload, ImageItem } from "../types";
+import { NewImageItemPayload, ImageItem, API_URL } from "../types";
 export async function getImages(): Promise<ImageItem[]> {
   const requestInfo = {
     method: "GET",

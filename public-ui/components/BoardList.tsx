@@ -9,13 +9,14 @@ const BoardList = ({ boards }) => {
   return (
     <SafeAreaView>
       <View>
-        {boards.map((board) => (
-          <View key={board.id}>
-            <Link to={{ screen: "boards/[id]", params: { id: board.id } }}>
-              {board.name}
-            </Link>
-          </View>
-        ))}
+        {boards &&
+          boards.map((board) => (
+            <View key={board.id}>
+              <Link to={{ screen: "boards/[id]", params: { id: board.id } }}>
+                {board.name}
+              </Link>
+            </View>
+          ))}
       </View>
     </SafeAreaView>
   );

@@ -1,5 +1,5 @@
-import { NewBoardPayload, Board, BoardWithImages } from "../types";
-const API_URL = "http://localhost:3000/";
+import { NewBoardPayload, Board, BoardWithImages, API_URL } from "../types";
+
 
 export async function getBoards(): Promise<Board[]> {
   const requestInfo = {
@@ -8,11 +8,20 @@ export async function getBoards(): Promise<Board[]> {
       "Content-Type": "application/json",
     },
   };
-  const response = await fetch(`${API_URL}boards`, requestInfo);
-  const boards: Board[] = await response.json();
-  console.log("API");
-  console.log(boards);
-  return boards;
+  try {
+    console.log("API_URL", API_URL);
+    const response = await fetch(`${API_URL}boards`, requestInfo);
+    console.log("Response", response);
+    const boards: Board[] = await response.json();
+    console.log("API");
+    console.log(boards);
+    return boards;
+  }
+  catch (e) {
+    console.log(e.message);
+    console.log(e.stack)
+    return [];
+  }
 }
 
 export async function createBoard(payload: NewBoardPayload): Promise<Board> {
